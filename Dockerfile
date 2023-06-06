@@ -1,6 +1,9 @@
-FROM python:3.10-alpine
+FROM python:3.10
 WORKDIR /test-project
-ADD . /test-project
-RUN pip install -r requirements.txt
-EXPOSE 8080
-CMD ["python", "app.py"]
+COPY requirements.txt requirements.txt
+
+RUN pip3 install -r requirements.txt
+
+COPY . .
+
+CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
